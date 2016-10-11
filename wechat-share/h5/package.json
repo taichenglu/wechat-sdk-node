@@ -1,0 +1,7 @@
+{
+  "name": "wechat-share",
+  "version": "0.0.1",
+  "devDependencies": {
+    "isomorphic-fetch": "2.2.1"
+  }
+}
