@@ -5,7 +5,9 @@ import wx from './jweixin-1.0.0'
 const apiUrl = '/xxxx'
 
 // 默认图
-const imgWxShare = require('xxxx.png')
+// const imgWxShare = require('xxx.png')
+// 安卓版微信不支持 base64 图片
+const imgWxShare = 'http://xxxx.com/xxxx.png'
 
 // nodeFetch
 const nodeFetch = (options) => {
