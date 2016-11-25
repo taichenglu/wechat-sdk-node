@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router() // eslint-disable-line
+const router = express.Router()
 const https = require('https')
 const jsSHA = require('jssha')
 
@@ -27,15 +27,15 @@ const createTimeStamp = () => String(parseInt(new Date().getTime() / 1000, 0))
 // 签名
 const sign = (ticket, noncestr, timestamp, url) => {
   const str = `jsapi_ticket=${ticket}&noncestr=${noncestr}&timestamp=${timestamp}&url=${url}`
-  const shaObj = new jsSHA(str, 'TEXT') // eslint-disable-line
+  const shaObj = new jsSHA(str, 'TEXT')
   return shaObj.getHash('SHA-1', 'HEX')
 }
 
 // 获取ticket
 const getTicket = (url, res, accessToken) => {
   https.get(`https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${accessToken}&type=jsapi`, (response) => {
-    var str = '' // eslint-disable-line
-    var ret = {} // eslint-disable-line
+    let str = ''
+    let ret = {}
     response.on('data', (data) => {
       str += data
     })
@@ -49,7 +49,7 @@ const getTicket = (url, res, accessToken) => {
 
       const timestamp = createTimeStamp()
       const nonceStr = createNonceStr()
-      const jsapi_ticket = ret.ticket // eslint-disable-line
+      const jsapi_ticket = ret.ticket
       const signature = sign(jsapi_ticket, nonceStr, timestamp, url)
       const item = { jsapi_ticket, nonceStr, timestamp, url, signature }
 
@@ -62,8 +62,8 @@ const getTicket = (url, res, accessToken) => {
 // 获取token
 const getToken = (url, res) => {
   https.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appInfo.appid}&secret=${appInfo.secret}`, (response) => {
-    var str = '' // eslint-disable-line
-    var ret = {} // eslint-disable-line
+    let str = ''
+    let ret = {}
     response.on('data', (data) => {
       str += data
     })

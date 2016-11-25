@@ -34,8 +34,8 @@ const nodeFetch = (options) => {
 
 export const wxShare = (options = {}) => {
   const {
-    title = '来自上上铺的分享',
-    desc = '找商铺，上上铺',
+    title = '分享标题',
+    desc = '分享摘要',
     link = '',
     // 分享类型，music、video或link，不填默认为link
     type = '',
@@ -54,13 +54,13 @@ export const wxShare = (options = {}) => {
   const url = encodeURIComponent(location.href.split('#')[0])
 
   nodeFetch({
-    url: `${apiUrl}?url=${url}`),
+    url: `${apiUrl}?url=${url}`,
     callback: (data) => {
       wx.config({
         // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         // debug: true,
         // 必填，公众号的唯一标识
-        appId: 'wxfa0bce818155480b',
+        appId: 'xxxxxxxxxxxxxxxxxx',
         // 必填，生成签名的时间戳
         timestamp: data.timestamp,
         // 必填，生成签名的随机串
